@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversário, Amor!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a1a, #3a3a3a);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            overflow-y: auto;
+        }
+        .hidden {
+            display: none;
+        }
+        .container {
+            max-width: 90%;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 64, 129, 0.5);
+            overflow-y: auto;
+        }
+        button {
+            background: linear-gradient(135deg, #ff4081, #e6006e);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-family: 'Pacifico', cursive;
+            cursor: pointer;
+            border-radius: 25px;
+            margin-top: 20px;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 64, 129, 0.5);
+        }
+        button:hover {
+            background-color: #d1005a;
+            transform: scale(1.1);
+        }
+        .carousel {
+            position: relative;
+            max-width: 100%;
+            width: 80vw;
+            height: auto;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 64, 129, 0.5);
+        }
+        .carousel img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            display: none;
+            border-radius: 10px;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: float 4s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-50px); opacity: 0.6; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+        @media (max-width: 768px) {
+            .carousel img {
+                max-height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="start-screen">
+        <button onclick="showMessage()">Clique para entrar 💖</button>
+    </div>
+    
+    <div id="message" class="hidden container">
+        <h2 style="font-family: 'Pacifico', cursive; font-size: 28px;">Feliz Aniversário, Amor! 🎉❤️</h2>
+        <p>Parabéns, amor, pelos seus 16 anos! Você é uma pessoa muito especial para mim, e, durante todo esse tempo, percebi o quanto eu te admiro e te amo. Você sempre está disposta a me escutar e, mesmo quando você não consigue falar algo no momento, é muito bom ter alguém para se apoiar.</p>
+        <p>Esses últimos 8 meses foram incríveis! Percebi que estou com alguém com quem quero passar o resto da minha vida. Espero que venham muitos anos ao seu lado. Você é uma pessoa incrível, que sempre tenta melhorar e faz tantas coisas. Sempre que vejo você se esforçando, me inspiro em você.</p>
+        <p>Eu amo absolutamente tudo em você, até mesmo quando fica brava ou estressada. Não consigo entender como você me aguenta e me ama tanto, mas fico muito feliz por isso. Muito obrigado por me permitir estar ao seu lado. Quero que você consiga tudo o que desejar e alcance todos os seus sonhos.</p>
+        <p><strong>I love you. Ass: Seu Fortin ❤️</strong></p>
+        
+        <div class="carousel">
+            <img src="fotopraia.jpg" class="active" alt="Foto 1">
+            <img src="fotobeijo.jpg" alt="Foto 2">
+            <img src="foto3.jpg" alt="Foto 3">
+        </div>
+    </div>
+    
+    <script>
+        function showMessage() {
+            document.getElementById("start-screen").classList.add("hidden");
+            document.getElementById("message").classList.remove("hidden");
+            createHearts();
+            startCarousel();
+        }
+        
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+                document.body.appendChild(heart);
+                setTimeout(() => { heart.remove(); }, 4000);
+            }
+        }
+        
+        function startCarousel() {
+            let images = document.querySelectorAll(".carousel img");
+            let index = 0;
+            setInterval(() => {
+                images[index].classList.remove("active");
+                index = (index + 1) % images.length;
+                images[index].classList.add("active");
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
